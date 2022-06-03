@@ -153,5 +153,5 @@ rock_crusher_def = {
 
 function addRockCrusher()
     api_define_menu_object(rock_crusher_def, "sprites/rock_crusher/rock_crusher.png", "sprites/rock_crusher/rock_crusher_menu.png", rock_crusher_scripts)
-    api_define_recipe('beekeeping', "ultra_item_rock_crusher" ,rock_crusher_recipe, 1)
+    api_define_recipe('tools', "ultra_item_rock_crusher" ,rock_crusher_recipe, 1)
 end

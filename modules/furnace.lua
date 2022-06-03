@@ -1,5 +1,5 @@
 furnace_layout  = {
-    {7, 17, "Input", {"ultra_item_iron_ore"}},
+    {7, 17, "Input", {"ultra_item_iron_ore", "log"}},
     {7, 39, "Input", {"log"}},
     {76, 17, "Output"},
     {76, 39, "Output"},
@@ -82,7 +82,7 @@ function tick_furnace(menu_id)
       if input_slot_1["item"] == "ultra_item_iron_ore" then
         api_slot_decr(input_slot_1["id"], 1)
         api_slot_decr(input_slot_2["id"], 1)
-        if output_slot_1["item"] == "" then
+        if output_slot_1["item"] == "" or output_slot_1["item"] == "ultra_item_charcoal"then
           api_slot_set(output_slot_1["id"], "ultra_item_iron_ingot", 1)
         else
           api_slot_incr(output_slot_1["id"], 1)
@@ -92,6 +92,28 @@ function tick_furnace(menu_id)
         else
           api_slot_incr(output_slot_2["id"], 1)
         end
+        input_slot = api_slot_match_range(menu_id, {"ANY"}, {1}, true)
+        input_slot_11 = api_slot_match_range(menu_id, {"ANY"}, {2}, true)
+        if input_slot == nil then
+          api_sp(menu_id, "working", false)
+          api_sp(menu_id, "p_start", 0)
+        end
+        if input_slot_11  == nil then
+          api_sp(menu_id, "working", false)
+          api_sp(menu_id, "p_start", 0)
+        end
+      end
+
+      if input_slot_1["item"] == "log" then
+        api_slot_decr(input_slot_1["id"], 1)
+        api_slot_decr(input_slot_2["id"], 1)
+
+        if output_slot_2["item"] == "" then
+          api_slot_set(output_slot_2["id"], "ultra_item_charcoal", 2)
+        else
+          api_slot_incr(output_slot_2["id"], 2)
+        end
+
         input_slot = api_slot_match_range(menu_id, {"ANY"}, {1}, true)
         input_slot_11 = api_slot_match_range(menu_id, {"ANY"}, {2}, true)
         if input_slot == nil then
@@ -139,7 +161,13 @@ furnace_def = {
     singular = true
 }
 
+furnace_recipe = {
+    { item = "stone", amount = 99 },
+    { item = "waterproof", amount = 10 }
+}
+
 function addFurnace()
-    api_define_menu_object(furnace_def, "sprites/furnace/furnace.png", "sprites/furnace/furnace_menu.png", furnace_scripts)
+  api_define_menu_object(furnace_def, "sprites/furnace/furnace.png", "sprites/furnace/furnace_menu.png", furnace_scripts)
+  api_define_recipe('beekeeping', "ultra_item_furnace", furnace_recipe, 1)
 end
 

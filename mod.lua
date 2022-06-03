@@ -7,7 +7,7 @@ function register()
   return {
     name = MOD_NAME,
     hooks = {"ready", "tick"},
-    modules = {"quests","items","furnace","iron_workbench"}
+    modules = {"quests","items","furnace","rock_crusher"}
   }
 end
 
@@ -16,8 +16,10 @@ function init()
   api_log("init", "Ultra Items Has Been Loaded!")
   --addQuests()
   addItems()
+  addRecipes()
   addFurnace()
-  addIronWorkbench()
+  --addIronWorkbench()
+  addRockCrusher()
   return "Success"
 end
 

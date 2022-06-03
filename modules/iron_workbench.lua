@@ -42,7 +42,7 @@ function define_iron_workbench(menu_id)
   api_dp(menu_id, "p_start", 0)
   api_dp(menu_id, "p_end", 5)
 
-  api_define_gui(menu_id, "iron_workbench_progress_bar", 50, 32, "iron_workbench_gui_tooltip", "sprites/iron_workbench/iron_workbench_gui_arrow.png")
+  api_define_gui(menu_id, "iron_workbench_progress_bar", 50, 31, "iron_workbench_gui_tooltip", "sprites/iron_workbench/iron_workbench_gui_arrow.png")
   api_dp(menu_id, "iron_workbench_progress_bar_sprite", api_get_sprite("ultra_item_iron_workbench_progress_bar"))
 
   fields = {"p_start", "p_end"}
@@ -78,14 +78,31 @@ function tick_iron_workbench(menu_id)
       output_slot = api_get_slot(menu_id, 5)
 
       if input_slot_1["item"] == "ultra_item_iron_ingot" then
-        if input_slot_1["count"] >= 2 then
-          api_slot_decr(input_slot_1["id"], 2)
-          if output_slot["item"] == "" then
-            api_slot_set(output_slot["id"], "ultra_item_iron_bar", 1)
-          else
-            api_slot_incr(output_slot["id"], 1)
+        if input_slot_2["item"] == "" and input_slot_3["item"] == "" and input_slot_2["item"] == ""  then
+          if input_slot_1["count"] >= 2 then
+            api_slot_decr(input_slot_1["id"], 2)
+            if output_slot["item"] == "" then
+              api_slot_set(output_slot["id"], "ultra_item_iron_bar", 1)
+            else
+              api_slot_incr(output_slot["id"], 1)
+            end
           end
         end
+      elseif input_slot_2["item"] == "ultra_item_iron_rod"then
+          if input_slot_1["item"] == "ultra_item_iron_ingot" then
+            if input_slot_1["count"] >= 3 then
+              api_slot_decr(input_slot_1["id"], 3)
+              api_slot_decr(input_slot_2["id"], 2)
+              if output_slot["item"] == "" then
+                api_slot_set(output_slot["id"], "ultra_item_iron_axe", 1)
+              else
+                api_slot_incr(output_slot["id"], 1)
+              end
+            end
+          end
+      else
+        api_sp(menu_id, "working", false)
+        api_sp(menu_id, "p_start", 0)
       end
     end
 
@@ -144,18 +161,17 @@ function addIronWorkbench()
 end
 
 --[[
-
-      if input_slot_2["item"] == "ultra_item_iron_rod"then
-        if input_slot_1["item"] == "ultra_item_iron_ingot" & input_slot_1["count"] >= 3 then
-          api_log("all item need for iron axe has spawned!")
-          api_slot_decr(input_slot_1["id"], 3)
-          api_slot_decr(input_slot_2["id"], 2)
-
-          if output_slot["item"] == "" then
-            api_slot_set(output_slot["id"], "ultra_item_iron_axe", 1)
-          else
-            api_slot_incr(output_slot["id"], 1)
+        if input_slot_2["item"] == "ultra_item_iron_rod"then
+        if input_slot_1["item"] == "ultra_item_iron_ingot" then
+          if input_slot_1["count"] >= 3 then
+            api_slot_decr(input_slot_1["id"], 3)
+            api_slot_decr(input_slot_2["id"], 2)
+            if output_slot["item"] == "" then
+              api_slot_set(output_slot["id"], "ultra_item_iron_axe", 1)
+            else
+              api_slot_incr(output_slot["id"], 1)
+            end
           end
         end
       end
---]]
+]]

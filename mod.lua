@@ -7,12 +7,12 @@ function register()
   return {
     name = MOD_NAME,
     hooks = {"ready", "tick"},
-    modules = {"quests","items","furnace","rock_crusher"}
+    modules = {"quests","items","furnace","rock_crusher", "power"}
   }
 end
 
 function init() 
-  api_set_devmode(true)
+  --api_set_devmode(true)
   api_log("init", "Ultra Items Has Been Loaded!")
   --addQuests()
   addItems()
@@ -24,11 +24,9 @@ function init()
 end
 
 function ready()
-  --first_quest = api_check_discovery("axe1")
-  --if (first_quest == true) then
-    --unlock = api_unlock_quest("my_new_quest")
-  --end
 end
 
 function tick()
+  --api_log("Info", power)
+  --addPower(1)
 end

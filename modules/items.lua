@@ -120,9 +120,9 @@ function addItems()
 end
 
 function addRecipes()
-    api_define_recipe('beekeeping', "ultra_item_iron_bar", iron_bar_recipe, 2)
-    api_define_recipe('beekeeping', "ultra_item_charred_rock", charred_rock_recipe, 1)
-    api_define_recipe('beekeeping', "ultra_item_charred_rock_gear", charred_rock_gear_recipe, 1)
+    api_define_recipe('tools', "ultra_item_iron_bar", iron_bar_recipe, 2)
+    api_define_recipe('tools', "ultra_item_charred_rock", charred_rock_recipe, 1)
+    api_define_recipe('tools', "ultra_item_charred_rock_gear", charred_rock_gear_recipe, 1)
     api_define_recipe('tools', "ultra_item_iron_axe", iron_axe_recipe ,1)
     api_define_recipe('tools', "ultra_item_iron_pickaxe", iron_pickaxe_recipe, 1)
 end

@@ -11,9 +11,9 @@ rock_crusher_layout  = {
 }
 
 rock_crusher_recipe = {
-    { item = "ultra_item_charred_rock_gear", amount = 2 },
-    { item = "ultra_item_charred_rock", amount = 25 },
-    { item = "planks1", amount = 30 }
+    {"ultra_item_charred_rock_gear", 2},
+    {"ultra_item_charred_rock", 25},
+    {"planks1", 30}
 }
 
 rock_crusher_info = {
@@ -78,14 +78,33 @@ function draw_rock_crusher(menu_id)
 end
 
 function tick_rock_crusher(menu_id)
+    input_slot = api_slot_match_range(menu_id, {"ANY"}, {1}, true)
+    slot_in = api_get_slot(menu_id, 9)
+    slot_out = api_get_slot(menu_id, 2)
+    if slot_in["item"] == "canister1" or slot_in["item"] == "canister2" then
+        api_slot_drain(menu_id, 9)
+    end
+    if slot_out["item"] == "canister1" or slot_out["item"] == "canister2" then
+        if api_gp(menu_id, "tank_amount") == 0 or api_gp(menu_id, "tank_type") == slot_out.stats["type"] then
+        api_sp(menu_id, "tank_type", slot_out.stats["type"])
+        api_slot_fill(menu_id, 2)
+        end 
+    end
+    if input_slot ~= nil and api_gp(menu_id, "tank_amount") >= 10 then 
+        api_sp(menu_id, "working", true)
+    else
+        api_sp(menu_id, "working", false)
+        api_sp(menu_id, "p_start", 0)
+    end
+
   if api_gp(menu_id, "working") == true then
     api_sp(menu_id, "p_start", api_gp(menu_id, "p_start") + 0.1)
     if api_gp(menu_id, "p_start") >= api_gp(menu_id, "p_end") then
         api_sp(menu_id, "p_start", 0)
         input_slot = api_slot_match_range(menu_id, {"ANY"}, {1}, true)
-        if input_slot ~= nil and api_gp(menu_id, "tank_amount") >= 50 then
+        if input_slot ~= nil and api_gp(menu_id, "tank_amount") >= 10 then
         api_slot_decr(input_slot["id"])
-        api_sp(menu_id, "tank_amount", api_gp(menu_id, "tank_amount") - 50)
+        api_sp(menu_id, "tank_amount", api_gp(menu_id, "tank_amount") - 10)
         ore_item = api_choose({"ultra_item_iron_ore", "stone"})
         output_slot = api_slot_match_range(menu_id, {"", ore_item}, {3, 4, 5, 6, 7}, true)
         if output_slot ~= nil then
@@ -97,7 +116,7 @@ function tick_rock_crusher(menu_id)
         end
         input_slot = api_slot_match_range(menu_id, {"ANY"}, {1}, true)
       end
-      if input_slot == nil or api_gp(menu_id, "tank_amount") < 50 then
+      if input_slot == nil or api_gp(menu_id, "tank_amount") < 10 then
         api_sp(menu_id, "working", false)
         api_sp(menu_id, "p_start", 0)
     end
@@ -118,7 +137,7 @@ function change_rock_crusher(menu_id)
         api_slot_fill(menu_id, 2)
         end 
     end
-    if input_slot ~= nil and api_gp(menu_id, "tank_amount") >= 50 then 
+    if input_slot ~= nil and api_gp(menu_id, "tank_amount") >= 10 then 
         api_sp(menu_id, "working", true)
     else
         api_sp(menu_id, "working", false)
@@ -153,5 +172,5 @@ rock_crusher_def = {
 
 function addRockCrusher()
     api_define_menu_object(rock_crusher_def, "sprites/rock_crusher/rock_crusher.png", "sprites/rock_crusher/rock_crusher_menu.png", rock_crusher_scripts)
-    api_define_recipe('tools', "ultra_item_rock_crusher" ,rock_crusher_recipe, 1)
+    ui_define_recipe(rock_crusher_recipe, "ultra_item_rock_crusher", 1, 2)
 end

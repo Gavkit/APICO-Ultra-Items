@@ -1,13 +1,13 @@
 power = 0
 
-function addPower(amount)
+function ui_add_power(amount)
     power = power + amount
 end
 
-function remvPower(amount)
+function ui_remv_power(amount)
     power = power - amount
 end
 
-function getPower()
+function ui_get_power()
     return power
 end

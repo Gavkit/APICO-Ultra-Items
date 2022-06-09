@@ -162,12 +162,12 @@ furnace_def = {
 }
 
 furnace_recipe = {
-    { item = "stone", amount = 99 },
-    { item = "waterproof", amount = 10 }
+    {"stone", 99},
+    {"waterproof", 10}
 }
 
 function addFurnace()
   api_define_menu_object(furnace_def, "sprites/furnace/furnace.png", "sprites/furnace/furnace_menu.png", furnace_scripts)
-  api_define_recipe('tools', "ultra_item_furnace", furnace_recipe, 1)
+  ui_define_recipe(furnace_recipe, "ultra_item_furnace", 1, 2)
 end
 

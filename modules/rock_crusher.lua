@@ -172,5 +172,5 @@ rock_crusher_def = {
 
 function addRockCrusher()
     api_define_menu_object(rock_crusher_def, "sprites/rock_crusher/rock_crusher.png", "sprites/rock_crusher/rock_crusher_menu.png", rock_crusher_scripts)
-    ui_define_recipe(rock_crusher_recipe, "ultra_item_rock_crusher", 1, 2)
+    api_define_recipe("t2", "ultra_item_rock_crusher", rock_crusher_recipe, 1)
 end

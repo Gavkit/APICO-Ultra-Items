@@ -168,6 +168,6 @@ furnace_recipe = {
 
 function addFurnace()
   api_define_menu_object(furnace_def, "sprites/furnace/furnace.png", "sprites/furnace/furnace_menu.png", furnace_scripts)
-  ui_define_recipe(furnace_recipe, "ultra_item_furnace", 1, 2)
+  api_define_recipe("t2", "ultra_item_furnace", furnace_recipe, 1)
 end
 

@@ -39,7 +39,7 @@ iron_bar_def = {
 }
 
 iron_bar_recipe = {
-    {"ultra_item_iron_ingot", 2}
+    {item = "ultra_item_iron_ingot", amount = 2}
 }
 
 charred_rock_def = {
@@ -53,8 +53,8 @@ charred_rock_def = {
 }
 
 charred_rock_recipe = {
-    {"ultra_item_charcoal", 2},
-    {"stone", 5}
+    {item = "ultra_item_charcoal",  amount = 2},
+    {item = "stone",  amount = 5}
 }
 
 charred_rock_gear_def = {
@@ -68,8 +68,8 @@ charred_rock_gear_def = {
 }
 
 charred_rock_gear_recipe = {
-    {"ultra_item_charred_rock", 3},
-    {"waterproof", 1}
+    {item = "ultra_item_charred_rock",  amount = 3},
+    {item = "waterproof",  amount = 1}
 }
 
 iron_axe_def = {
@@ -85,9 +85,9 @@ iron_axe_def = {
 }
 
 iron_axe_recipe = {
-    {"ultra_item_iron_ingot", 3},
-    {"ultra_item_iron_bar", 2},
-    {"ultra_item_charred_rock", 3}
+    {item = "ultra_item_iron_ingot",  amount = 3},
+    {item = "ultra_item_iron_bar",  amount = 2},
+    {item = "ultra_item_charred_rock",  amount = 3}
 }
 
 iron_pickaxe_def = {
@@ -103,9 +103,9 @@ iron_pickaxe_def = {
 }
 
 iron_pickaxe_recipe = {
-    {"ultra_item_iron_ingot", 3},
-    {"ultra_item_iron_bar", 2},
-    {"ultra_item_charred_rock", 3}
+    {"ultra_item_iron_ingot",  amount = 3},
+    {item = "ultra_item_iron_bar",  amount = 2},
+    {item = "ultra_item_charred_rock",  amount = 3}
 }
 
 function addItems()
@@ -121,10 +121,9 @@ function addItems()
 end
 
 function addRecipes()
-    ui_define_tabs(3)
-    ui_define_recipe(iron_bar_recipe, "ultra_item_iron_bar", 1, 1)
-    ui_define_recipe(charred_rock_recipe, "ultra_item_charred_rock", 1, 1)
-    ui_define_recipe(charred_rock_gear_recipe, "ultra_item_charred_rock_gear", 1, 1)
-    ui_define_recipe(iron_pickaxe_recipe, "ultra_item_iron_pickaxe", 1, 3)
-    ui_define_recipe(iron_axe_recipe, "ultra_item_iron_axe", 1, 3)
+    api_define_recipe("t1", "ultra_item_iron_bar", iron_bar_recipe, 1)
+    api_define_recipe("t1", "ultra_item_charred_rock", charred_rock_recipe, 1)
+    api_define_recipe("t1", "ultra_item_charred_rock_gear", charred_rock_gear_recipe, 1)
+    api_define_recipe("t3", "ultra_item_iron_pickaxe", iron_pickaxe_recipe, 1)
+    api_define_recipe("t3", "ultra_item_iron_axe", iron_axe_recipe, 1)
 end

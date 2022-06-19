@@ -162,8 +162,8 @@ furnace_def = {
 }
 
 furnace_recipe = {
-    {"stone", 99},
-    {"waterproof", 10}
+    {item = "stone", amount = 99},
+    {item = "waterproof", amount = 10}
 }
 
 function addFurnace()

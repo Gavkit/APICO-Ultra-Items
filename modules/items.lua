@@ -103,7 +103,7 @@ iron_pickaxe_def = {
 }
 
 iron_pickaxe_recipe = {
-    {"ultra_item_iron_ingot",  amount = 3},
+    {item = "ultra_item_iron_ingot",  amount = 3},
     {item = "ultra_item_iron_bar",  amount = 2},
     {item = "ultra_item_charred_rock",  amount = 3}
 }

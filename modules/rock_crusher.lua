@@ -11,9 +11,9 @@ rock_crusher_layout  = {
 }
 
 rock_crusher_recipe = {
-    {"ultra_item_charred_rock_gear", 2},
-    {"ultra_item_charred_rock", 25},
-    {"planks1", 30}
+    {item = "ultra_item_charred_rock_gear", amount = 2},
+    {item = "ultra_item_charred_rock", amount = 25},
+    {item = "planks1", amount = 30}
 }
 
 rock_crusher_info = {

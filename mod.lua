@@ -9,7 +9,7 @@ function register()
 end
 
 function init() 
-  --api_set_devmode(true)
+  api_set_devmode(true)
   api_define_workbench("Ultra Items", {
     t1 = "Resources",
     t2 = "Machines",
